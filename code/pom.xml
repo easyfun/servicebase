@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>servicebase</artifactId>
+        <groupId>com.efun</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>code</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>codeapi</module>
+        <module>codeimpl</module>
+        <module>codedata</module>
+        <module>codeboot</module>
+        <module>codetest</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${version.jedis}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.common-lang}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${version.fastjson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${version.springredis}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>framework-task</artifactId>
+            <version>${version.framework-task}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>framework-common</artifactId>
+            <version>${version.framework-common}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>framework-test</artifactId>
+            <version>${version.framework-test}</version>
+        </dependency>
+    </dependencies>
+
+</project>
