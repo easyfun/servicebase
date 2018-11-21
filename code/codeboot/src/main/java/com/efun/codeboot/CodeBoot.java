@@ -16,6 +16,6 @@ public class CodeBoot {
 
         com.alibaba.dubbo.container.Main.main(args);
 
-        LOGGER.debug("codeservice stop running");
+        LOGGER.debug("code stop running");
     }
 }

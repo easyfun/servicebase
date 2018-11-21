@@ -112,9 +112,20 @@
             <!--<scope>test</scope>-->
         </dependency>
 
+        <!--业务-->
         <dependency>
             <groupId>com.efun</groupId>
             <artifactId>codedata</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>codeapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>codeimpl</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -11,6 +11,19 @@
 
     <artifactId>codedata</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>codeapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.efun</groupId>
+            <artifactId>framework-redis</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <resources>
             <resource>

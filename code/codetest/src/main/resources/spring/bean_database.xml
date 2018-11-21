@@ -49,19 +49,20 @@
 		<property name="filters" value="stat" />
 	</bean>
 
-    <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
-    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="appSessionFactory" />
-        <property name="basePackage" value="com.efun.*.dao" />
-    </bean>
+	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="appSessionFactory" />
+		<property name="basePackage" value="com.efun.codedata.mysql.dao;com.efun.framework.task.dao" />
+	</bean>
 
-    <!-- define the SqlSessionFactory -->
+	<!-- define the SqlSessionFactory -->
 	<bean id="appSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
-                <value>classpath:com/efun/codedata/mapper/**/*.xml</value>
+				<value>classpath:com/efun/codedata/mapper/**/*.xml</value>
+				<value>classpath*:mybatis/mapper/**/*.xml</value>
 			</list>
 		</property>
 	</bean>

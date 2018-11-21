@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://code.alibabatech.com/schema/dubbo
+						http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
+    <!--<dubbo:application name="codeTest"  />-->
+
+    <!--&lt;!&ndash; 开启监控中心 &ndash;&gt;-->
+    <!--<dubbo:monitor protocol="registry" />-->
+
+    <!--&lt;!&ndash; 使用multicast广播注册中心暴露服务地址 &ndash;&gt;-->
+    <!--<dubbo:registry address="zookeeper://172.16.3.121:2181" />-->
+
+    <!--&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
+    <!--&lt;!&ndash; <dubbo:protocol name="dubbo" port="20880" /> &ndash;&gt;-->
+
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:reference id="emailCodeRpcService" interface="com.efun.codeapi.rpcapi.EmailCodeRpcService" group="local"/>
+</beans>
