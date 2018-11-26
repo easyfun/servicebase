@@ -36,16 +36,16 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Override
     public BaseResultDTO applyEmailCode(ApplyEmailCodeParamDTO applyEmailCodeParamDTO) {
         //校验请求参数
-        String code = codeService.createDigitalCode6();
-        applyEmailCodeParamDTO.setParam(code);
-
         boolean set = applyEmailCodeRedisDAO.set(applyEmailCodeParamDTO);
         if (!set) {
             throw new BusinessException(CodeErrorCode.applyTooFast);
         }
 
+        String code = codeService.createDigitalCode6();
+        applyEmailCodeParamDTO.setParam(code);
+
         Task task = new Task();
-        String taskKey = ApplyEmailCodeRedisDAO.getKey(applyEmailCodeParamDTO.getCodeMode(), applyEmailCodeParamDTO.getEmail());
+        String taskKey = ApplyEmailCodeRedisDAO.getParamKey(applyEmailCodeParamDTO.getCodeMode(), applyEmailCodeParamDTO.getEmail());
         task.setTaskKey(taskKey);
         task.setHandler(SendCodeEmailHandler.class.getSimpleName());
         taskManager.pushTask(task);
@@ -54,6 +54,11 @@ public class EmailCodeServiceImpl implements EmailCodeService {
 
     @Override
     public BaseResultDTO verifyEmailCode(VerifyEmailCodeParamDTO verifyEmailCodeParamDTO) {
-        return null;
+        String codeKey = ApplyEmailCodeRedisDAO.getCodeKey(verifyEmailCodeParamDTO.getCodeMode(), verifyEmailCodeParamDTO.getEmail());
+        String code = applyEmailCodeRedisDAO.getCode(codeKey);
+        if (codeKey == null || !verifyEmailCodeParamDTO.getCode().equals(codeKey)) {
+            return BaseResultDTO.fail(CodeErrorCode.codeError.getFailCode());
+        }
+        return BaseResultDTO.success();
     }
 }

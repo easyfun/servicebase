@@ -1,8 +1,9 @@
 package com.efun.codeapi.dto;
 
 import com.efun.codeapi.enums.CodeMode;
+import com.efun.framework.common.dto.base.BaseParamDTO;
 
-public class VerifyEmailCodeParamDTO {
+public class VerifyEmailCodeParamDTO extends BaseParamDTO {
     private static final long serialVersionUID = -4191532230936764019L;
 
     /**

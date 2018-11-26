@@ -18,14 +18,14 @@ public class ApplyEmailCodeRedisDAO {
     private RedisService redisService;
 
     public boolean set(ApplyEmailCodeParamDTO applyEmailCodeParamDTO) {
-        String key = getKey(applyEmailCodeParamDTO.getCodeMode(), applyEmailCodeParamDTO.getEmail());
+        String key = getParamKey(applyEmailCodeParamDTO.getCodeMode(), applyEmailCodeParamDTO.getEmail());
         String value = JsonUtil.toJSONString(applyEmailCodeParamDTO);
         boolean set = redisService.set(key, value, "NX", "PX", TIMEOUT);
         return set;
     }
 
     public ApplyEmailCodeParamDTO get(CodeMode codeMode, String eamil) {
-        String key = getKey(codeMode, eamil);
+        String key = getParamKey(codeMode, eamil);
         String value = redisService.get(key);
         if (StringUtils.isBlank(value)) {
             return null;
@@ -41,7 +41,16 @@ public class ApplyEmailCodeRedisDAO {
         return JSONObject.parseObject(value, ApplyEmailCodeParamDTO.class);
     }
 
-    public static String getKey(CodeMode codeMode, String email) {
-        return CodeConstant.SERVICE_NAME + ":" + codeMode + ":" + email;
+    public String getCode(String key) {
+        String value = redisService.get(key);
+        return value;
+    }
+
+    public static String getParamKey(CodeMode codeMode, String email) {
+        return CodeConstant.SERVICE_NAME + ":emailCode:param:" + codeMode + ":" + email;
+    }
+
+    public static String getCodeKey(CodeMode codeMode, String email) {
+        return CodeConstant.SERVICE_NAME + ":emailCode:code:" + codeMode + ":" + email;
     }
 }

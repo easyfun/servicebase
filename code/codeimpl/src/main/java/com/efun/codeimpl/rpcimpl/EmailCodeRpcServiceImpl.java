@@ -24,6 +24,6 @@ public class EmailCodeRpcServiceImpl implements EmailCodeRpcService {
 
     @Override
     public BaseResultDTO verifyEmailCode(VerifyEmailCodeParamDTO verifyEmailCodeParamDTO) {
-        return null;
+        return emailCodeService.verifyEmailCode(verifyEmailCodeParamDTO);
     }
 }

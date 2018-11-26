@@ -1,6 +1,7 @@
 package com.efun.codeimpl.rpcimpl;
 
 import com.efun.codeapi.dto.ApplyEmailCodeParamDTO;
+import com.efun.codeapi.dto.VerifyEmailCodeParamDTO;
 import com.efun.codeapi.enums.CodeMode;
 import com.efun.codeapi.rpcapi.EmailCodeRpcService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
@@ -26,4 +27,13 @@ public class EmailCodeRpcServiceImplTest extends SpringTestCase {
         logger.debug("baseResultDTO={}", JsonUtil.toJSONString(baseResultDTO));
     }
 
+    @Test
+    public void verifyEmailCode() {
+        VerifyEmailCodeParamDTO paramDTO = new VerifyEmailCodeParamDTO();
+        paramDTO.setCodeMode(CodeMode.signUp);
+        paramDTO.setEmail("1060887552@qq.com");
+        paramDTO.setCode("123456");
+        BaseResultDTO resultDTO = emailCodeRpcService.verifyEmailCode(paramDTO);
+        logger.debug("resultDTO={}", JsonUtil.toJSONString(resultDTO));
+    }
 }
