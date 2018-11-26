@@ -1,9 +1,11 @@
 package com.efun.codeimpl.rpcimpl;
 
 import com.efun.codeapi.dto.ApplyEmailCodeParamDTO;
+import com.efun.codeapi.dto.ApplyMobileCodeParamDTO;
 import com.efun.codeapi.dto.VerifyEmailCodeParamDTO;
+import com.efun.codeapi.dto.VerifyMobileCodeParamDTO;
 import com.efun.codeapi.enums.CodeMode;
-import com.efun.codeapi.rpcapi.EmailCodeRpcService;
+import com.efun.codeapi.rpcapi.CodeRpcService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
 import com.efun.framework.common.utils.JsonUtil;
 import com.efun.framework.test.SpringTestCase;
@@ -16,14 +18,14 @@ public class EmailCodeRpcServiceImplTest extends SpringTestCase {
     private static final Logger logger = LoggerFactory.getLogger(EmailCodeRpcServiceImplTest.class);
 
     @Autowired
-    private EmailCodeRpcService emailCodeRpcService;
+    private CodeRpcService codeRpcService;
 
     @Test
     public void applyEmailCode() {
         ApplyEmailCodeParamDTO paramDTO = new ApplyEmailCodeParamDTO();
         paramDTO.setCodeMode(CodeMode.signUp);
         paramDTO.setEmail("1060887552@qq.com");
-        BaseResultDTO baseResultDTO = emailCodeRpcService.applyEmailCode(paramDTO);
+        BaseResultDTO baseResultDTO = codeRpcService.applyEmailCode(paramDTO);
         logger.debug("baseResultDTO={}", JsonUtil.toJSONString(baseResultDTO));
     }
 
@@ -33,7 +35,27 @@ public class EmailCodeRpcServiceImplTest extends SpringTestCase {
         paramDTO.setCodeMode(CodeMode.signUp);
         paramDTO.setEmail("1060887552@qq.com");
         paramDTO.setCode("123456");
-        BaseResultDTO resultDTO = emailCodeRpcService.verifyEmailCode(paramDTO);
+        BaseResultDTO resultDTO = codeRpcService.verifyEmailCode(paramDTO);
         logger.debug("resultDTO={}", JsonUtil.toJSONString(resultDTO));
     }
+
+    @Test
+    public void applyMobileCode() {
+        ApplyMobileCodeParamDTO paramDTO = new ApplyMobileCodeParamDTO();
+        paramDTO.setCodeMode(CodeMode.signUp);
+        paramDTO.setMobile("13517295502");
+        BaseResultDTO baseResultDTO = codeRpcService.applyMobileCode(paramDTO);
+        logger.debug("baseResultDTO={}", JsonUtil.toJSONString(baseResultDTO));
+    }
+
+    @Test
+    public void verifyMobileCode() {
+        VerifyMobileCodeParamDTO paramDTO = new VerifyMobileCodeParamDTO();
+        paramDTO.setCodeMode(CodeMode.signUp);
+        paramDTO.setMobile("13517295502");
+        paramDTO.setCode("123456");
+        BaseResultDTO resultDTO = codeRpcService.verifyMobileCode(paramDTO);
+        logger.debug("resultDTO={}", JsonUtil.toJSONString(resultDTO));
+    }
+
 }

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efun.userdata.mysql.dao.base.UserSignInLogMapper">
+  <resultMap id="BaseResultMap" type="com.efun.userdata.mysql.po.UserSignInLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="account_mode" jdbcType="VARCHAR" property="accountMode" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="user_agent" jdbcType="VARCHAR" property="userAgent" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+    <result column="fail_code" jdbcType="VARCHAR" property="failCode" />
+    <result column="fail_reason" jdbcType="VARCHAR" property="failReason" />
+    <result column="sign_in_time" jdbcType="TIMESTAMP" property="signInTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, account_mode, ip, user_agent, result, fail_code, fail_reason, sign_in_time, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_sign_in_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user_sign_in_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.efun.userdata.mysql.po.UserSignInLog">
+    insert into t_user_sign_in_log (id, uid, account_mode, 
+      ip, user_agent, result, 
+      fail_code, fail_reason, sign_in_time, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{accountMode,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
+      #{failCode,jdbcType=VARCHAR}, #{failReason,jdbcType=VARCHAR}, #{signInTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.efun.userdata.mysql.po.UserSignInLog">
+    insert into t_user_sign_in_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="accountMode != null">
+        account_mode,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="userAgent != null">
+        user_agent,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="failCode != null">
+        fail_code,
+      </if>
+      <if test="failReason != null">
+        fail_reason,
+      </if>
+      <if test="signInTime != null">
+        sign_in_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="accountMode != null">
+        #{accountMode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null">
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="failCode != null">
+        #{failCode,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efun.userdata.mysql.po.UserSignInLog">
+    update t_user_sign_in_log
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="accountMode != null">
+        account_mode = #{accountMode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null">
+        user_agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="failCode != null">
+        fail_code = #{failCode,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        sign_in_time = #{signInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efun.userdata.mysql.po.UserSignInLog">
+    update t_user_sign_in_log
+    set uid = #{uid,jdbcType=BIGINT},
+      account_mode = #{accountMode,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR},
+      fail_code = #{failCode,jdbcType=VARCHAR},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      sign_in_time = #{signInTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

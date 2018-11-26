@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efun.userdata.mysql.dao.base.UserDetailMapper">
+  <resultMap id="BaseResultMap" type="com.efun.userdata.mysql.po.UserDetail">
+    <id column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_picture_url" jdbcType="VARCHAR" property="headPictureUrl" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="marriage_status" jdbcType="VARCHAR" property="marriageStatus" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="security_level" jdbcType="VARCHAR" property="securityLevel" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="user_agent" jdbcType="VARCHAR" property="userAgent" />
+    <result column="sign_up_date" jdbcType="TIMESTAMP" property="signUpDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, nick_name, head_picture_url, gender, real_name, birthday, age, marriage_status, 
+    education, security_level, city_code, province_code, ip, user_agent, sign_up_date, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_detail
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user_detail
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.efun.userdata.mysql.po.UserDetail">
+    insert into t_user_detail (uid, nick_name, head_picture_url, 
+      gender, real_name, birthday, 
+      age, marriage_status, education, 
+      security_level, city_code, province_code, 
+      ip, user_agent, sign_up_date, 
+      create_time, update_time)
+    values (#{uid,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{headPictureUrl,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{age,jdbcType=INTEGER}, #{marriageStatus,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{securityLevel,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, #{signUpDate,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.efun.userdata.mysql.po.UserDetail">
+    insert into t_user_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="headPictureUrl != null">
+        head_picture_url,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="securityLevel != null">
+        security_level,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="userAgent != null">
+        user_agent,
+      </if>
+      <if test="signUpDate != null">
+        sign_up_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPictureUrl != null">
+        #{headPictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="marriageStatus != null">
+        #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="securityLevel != null">
+        #{securityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null">
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="signUpDate != null">
+        #{signUpDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efun.userdata.mysql.po.UserDetail">
+    update t_user_detail
+    <set>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPictureUrl != null">
+        head_picture_url = #{headPictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="marriageStatus != null">
+        marriage_status = #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="securityLevel != null">
+        security_level = #{securityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null">
+        user_agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="signUpDate != null">
+        sign_up_date = #{signUpDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efun.userdata.mysql.po.UserDetail">
+    update t_user_detail
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      head_picture_url = #{headPictureUrl,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      age = #{age,jdbcType=INTEGER},
+      marriage_status = #{marriageStatus,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      security_level = #{securityLevel,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      sign_up_date = #{signUpDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -20,5 +20,5 @@
 
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:reference id="codeRpcService" interface="com.efun.codeapi.rpcapi.CodeRpcService" group="local"/>
+    <!--<dubbo:reference id="codeRpcService" interface="com.efun.codeapi.rpcapi.CodeRpcService" group="local"/>-->
 </beans>

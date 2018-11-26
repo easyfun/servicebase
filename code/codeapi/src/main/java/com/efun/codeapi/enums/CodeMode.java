@@ -26,7 +26,7 @@ public enum CodeMode implements IntegerValuedEnum {
 
     private int value;
 
-    private CodeMode(int value) {
+    CodeMode(int value) {
         this.value = value;
     }
 

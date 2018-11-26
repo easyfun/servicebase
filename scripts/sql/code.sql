@@ -5,7 +5,7 @@
 --create table t_code_apply (
 --	`apply_id` varchar(80) not null comment '申请id',
 --	`apply_type` varchar(32) not null comment '申请类型: apply-申请, verify-验证',
---	`business_id_type` varchar(100) not null comment '业务id类型: mobile-手机号; email-邮箱;',
+--	`business_id_type` varchar(100) not null comment '业务id类型: mobile-手机号; mobile-邮箱;',
 --	`business_id` varchar(100) not null comment '业务id: 手机号; 邮箱;',
 --	`code_mode` varchar(32) not null comment '验证码类型:注册; 重置登录密码; 重置支付密码',
 --    `param` varchar(2048) default null comment '请求参数',
