@@ -29,4 +29,5 @@
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.efun.codeapi.rpcapi.CodeRpcService" ref="codeRpcServiceImpl"></dubbo:service>
+    <dubbo:service interface="com.efun.userapi.rpcapi.UserRpcService" ref="userRpcServiceImpl"></dubbo:service>
  </beans>

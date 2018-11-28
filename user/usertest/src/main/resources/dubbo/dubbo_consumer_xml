@@ -6,17 +6,17 @@
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://code.alibabatech.com/schema/dubbo
 						http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
     <!--<dubbo:application name="codeTest"  />-->
 
-    <!--&lt;!&ndash; 开启监控中心 &ndash;&gt;-->
+    <!-- 开启监控中心 -->
     <!--<dubbo:monitor protocol="registry" />-->
 
-    <!--&lt;!&ndash; 使用multicast广播注册中心暴露服务地址 &ndash;&gt;-->
-    <!--<dubbo:registry address="zookeeper://172.16.3.121:2181" />-->
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <!--<dubbo:registry address="zookeeper://172.16.2.199:2181" />-->
 
-    <!--&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
-    <!--&lt;!&ndash; <dubbo:protocol name="dubbo" port="20880" /> &ndash;&gt;-->
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <!-- <dubbo:protocol name="dubbo" port="20880" /> -->
 
 
     <!-- 声明需要暴露的服务接口 -->

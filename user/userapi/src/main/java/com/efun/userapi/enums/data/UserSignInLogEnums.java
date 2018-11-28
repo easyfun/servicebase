@@ -4,7 +4,7 @@ import com.efun.framework.common.mybatis.IntegerValuedEnum;
 
 public class UserSignInLogEnums {
     /**
-     * 登陆账号类型
+     * 账号类型
      */
     public enum AccountMode implements IntegerValuedEnum {
         mobile(1),
@@ -15,7 +15,7 @@ public class UserSignInLogEnums {
 
         private int value;
 
-        private AccountMode(int value) {
+        AccountMode(int value) {
             this.value = value;
         }
 

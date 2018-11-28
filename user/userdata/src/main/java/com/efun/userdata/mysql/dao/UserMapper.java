@@ -1,8 +1,9 @@
-package com.efun.userdata.mysql.dao.base;
+package com.efun.userdata.mysql.dao;
 
+import com.efun.userdata.mysql.dao.extend.UserExtendMapper;
 import com.efun.userdata.mysql.po.User;
 
-public interface UserMapper {
+public interface UserMapper extends UserExtendMapper {
     int deleteByPrimaryKey(Long uid);
 
     int insert(User record);

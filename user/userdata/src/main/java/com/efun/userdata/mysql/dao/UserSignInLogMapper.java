@@ -1,4 +1,4 @@
-package com.efun.userdata.mysql.dao.base;
+package com.efun.userdata.mysql.dao;
 
 import com.efun.userdata.mysql.po.UserSignInLog;
 
