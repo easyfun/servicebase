@@ -1,0 +1,1 @@
+./start.sh com.efun.codeboot.CodeBoot

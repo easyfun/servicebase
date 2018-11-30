@@ -34,7 +34,7 @@ public class LogAdvice {
 			logger.info("[{}]resultDTO:{}", method, JsonUtil.toJSONString(returnValue));
 			return returnValue;
 		} catch (Exception e) {
-			logger.error("[{}]data.", method, e);
+			logger.error("[{}]exception", method, e);
 			Class<?> returnType = getReturnType(point, params);
 			BaseResultDTO resultDTO = (BaseResultDTO) returnType.newInstance();
 			resultDTO.setResult(Result.fail);

@@ -2,8 +2,8 @@
 
 <configuration>
     <property name="log.root.level" value="debug" /> <!-- 日志级别 -->
-	<property name="log.base" value="/data/log/codeservice" /> <!-- 日志路径 -->
-	<property name="log.moduleName" value="codeservice" />  <!-- 模块名称， 影响日志配置名，日志文件名 -->
+	<property name="log.base" value="/data/log/codeboot" /> <!-- 日志路径 -->
+	<property name="log.moduleName" value="codeboot" />  <!-- 模块名称， 影响日志配置名，日志文件名 -->
 	<property name="log.max.size" value="100MB" /> <!-- 日志文件大小 -->
 
 	<contextName>${log.moduleName}</contextName>

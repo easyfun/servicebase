@@ -11,6 +11,9 @@
         <module>code</module>
         <module>common</module>
         <module>user</module>
+        <module>resource</module>
+        <module>test</module>
+        <module>web</module>
     </modules>
     <packaging>pom</packaging>
 
