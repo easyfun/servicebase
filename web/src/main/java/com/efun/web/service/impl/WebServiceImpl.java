@@ -4,7 +4,7 @@ import com.efun.framework.common.dto.base.BaseResultDTO;
 import com.efun.framework.common.enums.UserAgent;
 import com.efun.framework.common.id.IdUtils;
 import com.efun.framework.common.utils.JsonUtil;
-import com.efun.userapi.dto.SignUpParamDTO;
+import com.efun.userapi.dto.EmailSignUpParamDTO;
 import com.efun.userapi.enums.data.UserSignInLogEnums;
 import com.efun.userapi.rpcapi.UserRpcService;
 import com.efun.web.service.WebService;
@@ -22,7 +22,7 @@ public class WebServiceImpl implements WebService {
 
     @Override
     public String signUp() {
-        SignUpParamDTO paramDTO = new SignUpParamDTO();
+        EmailSignUpParamDTO paramDTO = new EmailSignUpParamDTO();
 
         paramDTO.setApplyId(String.valueOf(IdUtils.getInstance().createFlowId()));
         paramDTO.setUserAgent(UserAgent.android);

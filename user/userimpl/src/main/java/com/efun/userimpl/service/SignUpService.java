@@ -1,11 +1,12 @@
 package com.efun.userimpl.service;
 
 import com.efun.framework.common.dto.base.BaseResultDTO;
-import com.efun.userapi.dto.SignUpParamDTO;
+import com.efun.userapi.dto.EmailSignUpParamDTO;
+import com.efun.userapi.dto.MobileSignUpParamDTO;
 
 public interface SignUpService {
-    BaseResultDTO emailSignUp(SignUpParamDTO paramDTO);
+    BaseResultDTO emailSignUpWithTX(EmailSignUpParamDTO paramDTO);
 
-    BaseResultDTO mobileSignUp(SignUpParamDTO paramDTO);
+    BaseResultDTO mobileSignUp(MobileSignUpParamDTO paramDTO);
 
 }

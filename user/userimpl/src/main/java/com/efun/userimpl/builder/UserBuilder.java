@@ -1,7 +1,8 @@
 package com.efun.userimpl.builder;
 
 import com.efun.framework.common.id.IdUtils;
-import com.efun.userapi.dto.SignUpParamDTO;
+import com.efun.userapi.dto.EmailSignUpParamDTO;
+import com.efun.userapi.dto.MobileSignUpParamDTO;
 import com.efun.userapi.enums.data.UserEnums.*;
 import com.efun.userdata.mysql.po.User;
 
@@ -23,12 +24,12 @@ public class UserBuilder {
         return user;
     }
 
-    public static User buildWithEmail(SignUpParamDTO paramDTO) {
+    public static User buildWithEmail(EmailSignUpParamDTO paramDTO) {
         User user = new User();
         user.setUid(IdUtils.getInstance().createUid());
         user.setMobile(null);
         user.setMobileStatus(MobileStatus.disable.name());
-        user.setEmail(paramDTO.getAccount());
+        user.setEmail(paramDTO.getEmail());
         user.setEmailStatus(EmailStatus.enable.name());
         user.setCardNo(null);
         user.setCardMode(null);
@@ -41,10 +42,10 @@ public class UserBuilder {
         return user;
     }
 
-    public static User buildWithMobile(SignUpParamDTO paramDTO) {
+    public static User buildWithMobile(MobileSignUpParamDTO paramDTO) {
         User user = new User();
         user.setUid(IdUtils.getInstance().createUid());
-        user.setMobile(paramDTO.getAccount());
+        user.setMobile(paramDTO.getMobile());
         user.setMobileStatus(MobileStatus.enable.name());
         user.setEmail(null);
         user.setEmailStatus(null);

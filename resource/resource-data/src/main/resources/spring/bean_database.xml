@@ -68,26 +68,26 @@
 	</bean>
 
 	<!-- 独立事务(事务隔离) -->
-	<!--<aop:config>-->
-		<!--<aop:pointcut id="txAdvicePointCutIndepend"-->
-                      <!--expression="execution(* com.mexc.sun.*.service.impl.*IndependentTransactionServiceImpl.*(..))" />-->
-		<!--<aop:advisor advice-ref="txAdviceIndependent" pointcut-ref="txAdvicePointCutIndepend" />-->
-	<!--</aop:config>-->
-	<!--<tx:advice id="txAdviceIndependent" transaction-manager="appTransactionManager">-->
-		<!--<tx:attributes>-->
-			<!--<tx:method name="*" propagation="REQUIRES_NEW" />-->
-		<!--</tx:attributes>-->
-	<!--</tx:advice>-->
+	<aop:config>
+		<aop:pointcut id="txAdvicePointCutRequiresNew"
+                      expression="execution(* com.efun.*.service.impl.*RequiresNewServiceImpl.*(..))" />
+		<aop:advisor advice-ref="txAdviceRequiresNew" pointcut-ref="txAdvicePointCutRequiresNew" />
+	</aop:config>
+	<tx:advice id="txAdviceRequiresNew" transaction-manager="appTransactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRES_NEW" />
+		</tx:attributes>
+	</tx:advice>
 
-	<!-- Transaction setting -->
-	<!--<aop:config>-->
-		<!--<aop:pointcut id="txAdvicePointCut" expression="execution(* com.mexc.sun.*.service.impl.*.*(..))" />-->
-		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="txAdvicePointCut" />-->
-	<!--</aop:config>-->
-	<!--<tx:advice id="txAdvice" transaction-manager="appTransactionManager">-->
-		<!--<tx:attributes>-->
-			<!--<tx:method name="*" propagation="REQUIRED" />-->
-		<!--</tx:attributes>-->
-	<!--</tx:advice>-->
+	 <!--Transaction setting-->
+	<aop:config>
+		<aop:pointcut id="txAdvicePointCut" expression="execution(* com.efun.*.service.impl.*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txAdvicePointCut" />
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="appTransactionManager">
+		<tx:attributes>
+			<tx:method name="*WithTX" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
 </beans>
 

@@ -16,7 +16,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    uid, mobile, mobile_status, email, email_status, card_no, card_mode, real_name_status, 
+    uid, mobile, mobile_status, email, email_status, card_no, card_mode, real_name_status,
     password, user_status, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -31,12 +31,12 @@
   </delete>
   <insert id="insert" parameterType="com.efun.userdata.mysql.po.User">
     insert into t_user (uid, mobile, mobile_status, 
-      email, email_status, card_no, 
+      email, email_status, card_no,
       card_mode, real_name_status, password, 
       user_status, create_time, update_time
       )
-    values (#{uid,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{mobileStatus,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{emailStatus,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, 
+    values (#{uid,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{mobileStatus,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{emailStatus,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
       #{cardMode,jdbcType=VARCHAR}, #{realNameStatus,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )

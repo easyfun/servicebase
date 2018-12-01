@@ -37,7 +37,7 @@ create table t_user_detail
     city_code varchar(30) default null comment '城市code',
     province_code varchar(30) default null comment '省份code',
     ip varchar(64) not null comment '注册ip',
-    user_agent varchar(40) default '0' comment '注册app类型: browser; ios; andriod',
+    user_agent varchar(40) not null comment '注册app类型: browser; ios; andriod',
     sign_up_date datetime not null comment '注册时间',
     create_time datetime not null comment '创建时间',
     update_time datetime not null comment '更新时间',

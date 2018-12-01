@@ -7,7 +7,9 @@ import com.efun.codeapi.rpcapi.CodeRpcService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
 import com.efun.framework.common.enums.Result;
 import com.efun.framework.common.exception.BusinessException;
-import com.efun.userapi.dto.SignUpParamDTO;
+import com.efun.framework.test.ExceptionGenerator;
+import com.efun.userapi.dto.EmailSignUpParamDTO;
+import com.efun.userapi.dto.MobileSignUpParamDTO;
 import com.efun.userapi.exception.UserErrorCode;
 import com.efun.userdata.mysql.dao.UserDetailMapper;
 import com.efun.userdata.mysql.dao.UserMapper;
@@ -39,16 +41,16 @@ public class SignUpServiceImpl implements SignUpService {
     private MysqlRequiresNewService mysqlRequiresNewService;
 
     @Override
-    public BaseResultDTO emailSignUp(SignUpParamDTO paramDTO) {
+    public BaseResultDTO emailSignUpWithTX(EmailSignUpParamDTO paramDTO) {
         //校验邮箱数字验证码
-        VerifyEmailCodeParamDTO verifyEmailCodeParamDTO = new VerifyEmailCodeParamDTO();
-        verifyEmailCodeParamDTO.setCodeMode(CodeMode.signUp);
-        verifyEmailCodeParamDTO.setCode(paramDTO.getCode());
-        verifyEmailCodeParamDTO.setEmail(paramDTO.getAccount());
-        BaseResultDTO validateCodeResult = codeRpcService.verifyEmailCode(verifyEmailCodeParamDTO);
-        if (validateCodeResult.getResult() != Result.success) {
-            throw new BusinessException(UserErrorCode.signUpDigitalCodeError);
-        }
+//        VerifyEmailCodeParamDTO verifyEmailCodeParamDTO = new VerifyEmailCodeParamDTO();
+//        verifyEmailCodeParamDTO.setCodeMode(CodeMode.signUp);
+//        verifyEmailCodeParamDTO.setCode(paramDTO.getCode());
+//        verifyEmailCodeParamDTO.setEmail(paramDTO.getEmail());
+//        BaseResultDTO validateCodeResult = codeRpcService.verifyEmailCode(verifyEmailCodeParamDTO);
+//        if (validateCodeResult.getResult() != Result.success) {
+//            throw new BusinessException(UserErrorCode.signUpDigitalCodeError);
+//        }
 
         //生产用户记录
         User user = UserBuilder.buildWithEmail(paramDTO);
@@ -57,16 +59,20 @@ public class SignUpServiceImpl implements SignUpService {
         mysqlRequiresNewService.insertUserAndUserDetail(user, userDetail);
 
         //TODO:异步生成资金账号
+
+        if (1 == 1) {
+            ExceptionGenerator.createException();
+        }
         return BaseResultDTO.success();
     }
 
     @Override
-    public BaseResultDTO mobileSignUp(SignUpParamDTO paramDTO) {
+    public BaseResultDTO mobileSignUp(MobileSignUpParamDTO paramDTO) {
         //校验手机数字验证码
         VerifyMobileCodeParamDTO verifyMobileCodeParamDTO = new VerifyMobileCodeParamDTO();
         verifyMobileCodeParamDTO.setCodeMode(CodeMode.signUp);
         verifyMobileCodeParamDTO.setCode(paramDTO.getCode());
-        verifyMobileCodeParamDTO.setMobile(paramDTO.getAccount());
+        verifyMobileCodeParamDTO.setMobile(paramDTO.getMobile());
         BaseResultDTO validateCodeResult = codeRpcService.verifyMobileCode(verifyMobileCodeParamDTO);
         if (validateCodeResult.getResult() != Result.success) {
             throw new BusinessException(UserErrorCode.signUpDigitalCodeError);

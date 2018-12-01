@@ -1,11 +1,16 @@
 package com.efun.userapi.rpcapi;
 
 import com.efun.framework.common.dto.base.BaseResultDTO;
-import com.efun.userapi.dto.SignUpParamDTO;
+import com.efun.userapi.dto.EmailSignUpParamDTO;
+import com.efun.userapi.dto.MobileSignUpParamDTO;
 
 public interface UserRpcService {
     /**
-     * 注册请求
+     * 邮箱注册请求
      */
-    BaseResultDTO signUp(SignUpParamDTO paramDTO);
+    BaseResultDTO emailSignUp(EmailSignUpParamDTO paramDTO);
+
+
+    BaseResultDTO mobileSignUp(MobileSignUpParamDTO paramDTO);
+
 }
