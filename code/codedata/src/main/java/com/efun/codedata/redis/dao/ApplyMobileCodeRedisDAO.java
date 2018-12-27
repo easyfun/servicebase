@@ -3,7 +3,6 @@ package com.efun.codedata.redis.dao;
 import com.alibaba.fastjson.JSONObject;
 import com.efun.codeapi.constants.CodeConstant;
 import com.efun.codeapi.dto.ApplyMobileCodeParamDTO;
-import com.efun.codeapi.enums.CodeMode;
 import com.efun.framework.common.utils.JsonUtil;
 import com.efun.framework.redis.RedisService;
 import org.apache.commons.lang3.StringUtils;

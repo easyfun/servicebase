@@ -2,7 +2,6 @@ package com.efun.codeapi.rpcapi;
 
 import com.efun.codeapi.dto.ApplyEmailCodeParamDTO;
 import com.efun.codeapi.dto.ApplyMobileCodeParamDTO;
-import com.efun.codeapi.enums.CodeMode;
 import com.efun.framework.common.dto.base.BaseResultDTO;
 import com.efun.framework.common.utils.JsonUtil;
 import com.efun.framework.test.SpringTestCase;

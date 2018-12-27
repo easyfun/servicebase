@@ -2,7 +2,6 @@ package com.efun.userimpl.service.impl;
 
 import com.efun.codeapi.dto.VerifyEmailCodeParamDTO;
 import com.efun.codeapi.dto.VerifyMobileCodeParamDTO;
-import com.efun.codeapi.enums.CodeMode;
 import com.efun.codeapi.rpcapi.CodeRpcService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
 import com.efun.framework.common.enums.Result;
@@ -43,14 +42,14 @@ public class SignUpServiceImpl implements SignUpService {
     @Override
     public BaseResultDTO emailSignUpWithTX(EmailSignUpParamDTO paramDTO) {
         //校验邮箱数字验证码
-//        VerifyEmailCodeParamDTO verifyEmailCodeParamDTO = new VerifyEmailCodeParamDTO();
-//        verifyEmailCodeParamDTO.setCodeMode(CodeMode.signUp);
-//        verifyEmailCodeParamDTO.setCode(paramDTO.getCode());
-//        verifyEmailCodeParamDTO.setEmail(paramDTO.getEmail());
-//        BaseResultDTO validateCodeResult = codeRpcService.verifyEmailCode(verifyEmailCodeParamDTO);
-//        if (validateCodeResult.getResult() != Result.success) {
-//            throw new BusinessException(UserErrorCode.signUpDigitalCodeError);
-//        }
+        VerifyEmailCodeParamDTO verifyEmailCodeParamDTO = new VerifyEmailCodeParamDTO();
+        verifyEmailCodeParamDTO.setCodeMode(CodeMode.signUp);
+        verifyEmailCodeParamDTO.setCode(paramDTO.getCode());
+        verifyEmailCodeParamDTO.setEmail(paramDTO.getEmail());
+        BaseResultDTO validateCodeResult = codeRpcService.verifyEmailCode(verifyEmailCodeParamDTO);
+        if (validateCodeResult.getResult() != Result.success) {
+            throw new BusinessException(UserErrorCode.signUpDigitalCodeError);
+        }
 
         //生产用户记录
         User user = UserBuilder.buildWithEmail(paramDTO);

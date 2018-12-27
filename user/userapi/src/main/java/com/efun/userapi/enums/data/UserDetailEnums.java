@@ -13,7 +13,7 @@ public class UserDetailEnums {
 
         private int value;
 
-        private Gender(int value) {
+        Gender(int value) {
             this.value = value;
         }
 
@@ -33,7 +33,7 @@ public class UserDetailEnums {
 
         private int value;
 
-        private MarriageStatus(int value) {
+        MarriageStatus(int value) {
             this.value = value;
         }
 
@@ -51,7 +51,7 @@ public class UserDetailEnums {
 
         private int value;
 
-        private SecurityLevel(int value) {
+        SecurityLevel(int value) {
             this.value = value;
         }
 

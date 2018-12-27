@@ -7,7 +7,7 @@ public class BaseExceptionTest {
 
     @Test
     public void toStringTest() {
-        String v = String.format("errorCodeName=%s", CommonErrorCode.paramError);
+        String v = String.format("errorCodeName=%s", CommonErrorCode.requestParamError);
         System.out.println(v);
     }
 }

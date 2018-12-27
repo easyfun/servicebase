@@ -14,7 +14,7 @@ public class CodeServiceImpl implements CodeService {
     @Override
     public String createDigitalCode(int digit) {
         if (digit < 1) {
-            throw new BusinessException(CommonErrorCode.paramError);
+            throw new BusinessException(CommonErrorCode.requestParamError);
         }
 
         int code = Math.abs(random.nextInt());

@@ -17,7 +17,7 @@ public class UserEnums {
 
         private int value;
 
-        private MobileStatus(int value) {
+        MobileStatus(int value) {
             this.value = value;
         }
 
@@ -41,7 +41,7 @@ public class UserEnums {
 
         private int value;
 
-        private EmailStatus(int value) {
+        EmailStatus(int value) {
             this.value = value;
         }
 
@@ -65,7 +65,7 @@ public class UserEnums {
 
         private int value;
 
-        private CardStatus(int value) {
+        CardStatus(int value) {
             this.value = value;
         }
 
@@ -85,7 +85,7 @@ public class UserEnums {
 
         private int value;
 
-        private CardMode(int value) {
+        CardMode(int value) {
             this.value = value;
         }
 
@@ -110,7 +110,7 @@ public class UserEnums {
 
         private int value;
 
-        private RealNameStatus(int value) {
+        RealNameStatus(int value) {
             this.value = value;
         }
 
@@ -134,7 +134,7 @@ public class UserEnums {
 
         private int value;
 
-        private UserStatus(int value) {
+        UserStatus(int value) {
             this.value = value;
         }
 

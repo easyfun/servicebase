@@ -4,7 +4,6 @@ import com.efun.codeapi.dto.ApplyEmailCodeParamDTO;
 import com.efun.codeapi.dto.ApplyMobileCodeParamDTO;
 import com.efun.codeapi.dto.VerifyEmailCodeParamDTO;
 import com.efun.codeapi.dto.VerifyMobileCodeParamDTO;
-import com.efun.codeapi.enums.CodeMode;
 import com.efun.codeapi.rpcapi.CodeRpcService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
 import com.efun.framework.common.utils.JsonUtil;

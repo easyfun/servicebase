@@ -16,7 +16,7 @@ public class UserRpcServiceImpl implements UserRpcService {
 
     @Override
     public BaseResultDTO emailSignUp(EmailSignUpParamDTO paramDTO) {
-//        paramDTO.validateBaseParam();
+        paramDTO.validateBaseParam();
         return signUpService.emailSignUpWithTX(paramDTO);
     }
 

@@ -5,6 +5,9 @@ import com.efun.codeapi.dto.ApplyMobileCodeParamDTO;
 import com.efun.codeapi.dto.VerifyEmailCodeParamDTO;
 import com.efun.codeapi.dto.VerifyMobileCodeParamDTO;
 import com.efun.codeapi.rpcapi.CodeRpcService;
+import com.efun.codedata.mysql.po.CodeApply;
+import com.efun.codedata.mysql.po.builder.CodeApplyBuilder;
+import com.efun.codeimpl.service.CodeMysqlRequiresNewService;
 import com.efun.codeimpl.service.EmailCodeService;
 import com.efun.codeimpl.service.MobileCodeService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
@@ -18,19 +21,42 @@ public class CodeRpcServiceImpl implements CodeRpcService {
     private static final Logger logger = LoggerFactory.getLogger(CodeRpcServiceImpl.class);
 
     @Autowired
-    private EmailCodeService emailCodeService;
+    EmailCodeService emailCodeService;
 
     @Autowired
-    private MobileCodeService mobileCodeService;
+    MobileCodeService mobileCodeService;
+
+    @Autowired
+    CodeMysqlRequiresNewService codeMysqlRequiresNewService;
 
     @Override
-    public BaseResultDTO applyEmailCode(ApplyEmailCodeParamDTO applyEmailCodeParamDTO) {
-        return emailCodeService.applyEmailCode(applyEmailCodeParamDTO);
+    public BaseResultDTO applyEmailCode(ApplyEmailCodeParamDTO paramDTO) {
+        CodeApply codeApply = CodeApplyBuilder.build(paramDTO);
+        codeMysqlRequiresNewService.insertCodeApply(codeApply);
+
+        try {
+            return emailCodeService.applyEmailCode(paramDTO, codeApply);
+        } catch (Exception e) {
+            BaseResultDTO fail = BaseResultDTO.fail(e);
+            CodeApply update = CodeApplyBuilder.buildUpdate(codeApply, fail);
+            codeMysqlRequiresNewService.updateCodeApply(update);
+            return fail;
+        }
     }
 
     @Override
-    public BaseResultDTO verifyEmailCode(VerifyEmailCodeParamDTO verifyEmailCodeParamDTO) {
-        return emailCodeService.verifyEmailCode(verifyEmailCodeParamDTO);
+    public BaseResultDTO verifyEmailCode(VerifyEmailCodeParamDTO paramDTO) {
+        CodeApply codeApply = CodeApplyBuilder.build(paramDTO);
+        codeMysqlRequiresNewService.insertCodeApply(codeApply);
+
+        try {
+            return emailCodeService.verifyEmailCode(paramDTO, codeApply);
+        } catch (Exception e) {
+            BaseResultDTO fail = BaseResultDTO.fail(e);
+            CodeApply update = CodeApplyBuilder.buildUpdate(codeApply, fail);
+            codeMysqlRequiresNewService.updateCodeApply(update);
+            return fail;
+        }
     }
 
     @Override

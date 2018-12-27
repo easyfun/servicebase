@@ -39,7 +39,7 @@ public class LogAdvice {
 			BaseResultDTO resultDTO = (BaseResultDTO) returnType.newInstance();
 			resultDTO.setResult(Result.fail);
 			if (e instanceof ValidationException) {
-				resultDTO.setFailCode(CommonErrorCode.paramError.getFailCode());
+				resultDTO.setFailCode(CommonErrorCode.requestParamError.getFailCode());
 			} else {
 				resultDTO.setFailCode(BaseException.getFailCode(e));
 			}

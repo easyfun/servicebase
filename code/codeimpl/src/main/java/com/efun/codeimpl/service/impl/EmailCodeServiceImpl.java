@@ -3,8 +3,11 @@ package com.efun.codeimpl.service.impl;
 import com.efun.codeapi.dto.ApplyEmailCodeParamDTO;
 import com.efun.codeapi.dto.VerifyEmailCodeParamDTO;
 import com.efun.codeapi.exception.CodeErrorCode;
+import com.efun.codedata.mysql.po.CodeApply;
+import com.efun.codedata.mysql.po.builder.CodeApplyBuilder;
 import com.efun.codedata.redis.dao.ApplyEmailCodeRedisDAO;
 import com.efun.codeimpl.handler.SendCodeEmailHandler;
+import com.efun.codeimpl.service.CodeMysqlRequiresNewService;
 import com.efun.codeimpl.service.CodeService;
 import com.efun.codeimpl.service.EmailCodeService;
 import com.efun.framework.common.dto.base.BaseResultDTO;
@@ -21,44 +24,58 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     private static final Logger logger = LoggerFactory.getLogger(EmailCodeServiceImpl.class);
 
     @Autowired
-    private CodeService codeService;
+    CodeService codeService;
 
     @Autowired
-    private TaskManager taskManager;
+    TaskManager taskManager;
 
     @Autowired
-    private ApplyEmailCodeRedisDAO applyEmailCodeRedisDAO;
+    ApplyEmailCodeRedisDAO applyEmailCodeRedisDAO;
+
+    @Autowired
+    CodeMysqlRequiresNewService codeMysqlRequiresNewService;
+
 
     /**
      * 异步接口
      * 允许请求丢失
      */
     @Override
-    public BaseResultDTO applyEmailCode(ApplyEmailCodeParamDTO applyEmailCodeParamDTO) {
+    public BaseResultDTO applyEmailCode(ApplyEmailCodeParamDTO paramDTO, CodeApply codeApply) {
         //校验请求参数
-        boolean set = applyEmailCodeRedisDAO.set(applyEmailCodeParamDTO);
+        boolean set = applyEmailCodeRedisDAO.set(paramDTO);
         if (!set) {
             throw new BusinessException(CodeErrorCode.applyTooFast);
         }
 
         String code = codeService.createDigitalCode6();
-        applyEmailCodeParamDTO.setParam(code);
+        BaseResultDTO resultDTO = BaseResultDTO.accepted();
+        CodeApply update = CodeApplyBuilder.buildUpdate(codeApply, resultDTO);
+        update.setCode(code);
+        codeMysqlRequiresNewService.updateCodeApply(update);
 
         Task task = new Task();
-        String taskKey = ApplyEmailCodeRedisDAO.getParamKey(applyEmailCodeParamDTO.getCodeMode(), applyEmailCodeParamDTO.getEmail());
+        String taskKey = String.valueOf(codeApply.getId());
         task.setTaskKey(taskKey);
         task.setHandler(SendCodeEmailHandler.class.getSimpleName());
         taskManager.pushTask(task);
-        return BaseResultDTO.accepted();
+
+        return resultDTO;
     }
 
     @Override
-    public BaseResultDTO verifyEmailCode(VerifyEmailCodeParamDTO verifyEmailCodeParamDTO) {
-        String codeKey = ApplyEmailCodeRedisDAO.getCodeKey(verifyEmailCodeParamDTO.getCodeMode(), verifyEmailCodeParamDTO.getEmail());
+    public BaseResultDTO verifyEmailCode(VerifyEmailCodeParamDTO paramDTO, CodeApply codeApply) {
+        String codeKey = ApplyEmailCodeRedisDAO.getCodeKey(paramDTO.getCodeMode(), paramDTO.getEmail());
         String code = applyEmailCodeRedisDAO.getCode(codeKey);
-        if (codeKey == null || !verifyEmailCodeParamDTO.getCode().equals(codeKey)) {
-            return BaseResultDTO.fail(CodeErrorCode.codeError.getFailCode());
+        if (code == null || !paramDTO.getCode().equals(code)) {
+            throw new BusinessException(CodeErrorCode.codeError);
         }
-        return BaseResultDTO.success();
+
+        BaseResultDTO resultDTO = BaseResultDTO.success();
+        CodeApply update = CodeApplyBuilder.buildUpdate(codeApply, resultDTO);
+        codeMysqlRequiresNewService.updateCodeApply(update);
+
+        return resultDTO;
     }
+
 }

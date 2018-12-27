@@ -1,5 +1,31 @@
 create database user;
 
+#用户注册申请表
+create table t_user_sign_up_apply
+(
+    apply_id varchar(80) not null comment 'apply id',
+    uid bigint default null comment 'uid',
+    mobile varchar(20) default null comment '手机号',
+    email varchar(200) default null comment '邮箱',
+    code varchar(16) not null comment '注册验证码',
+    password varchar(80) not null comment '登陆密码',
+    confirm_password varchar(80) not null comment '确认登陆密码',
+    city_code varchar(30) default null comment '城市code',
+    province_code varchar(30) default null comment '省份code',
+    ip varchar(64) not null comment '注册ip',
+    user_agent varchar(40) not null comment '注册app类型: browser; ios; andriod',
+    result varchar(32) not null comment '结果: accepted-处理中(未知); success-成功; fail-失败',
+    fail_code varchar(32) default null comment '失败码',
+    fail_reason varchar(256) default null comment '失败原因',
+    create_time datetime not null comment '创建时间',
+    update_time datetime not null comment '更新时间',
+    primary key (apply_id),
+    key k_uid(uid),
+    key k_mobile (mobile),
+    key k_email (email)
+) engine=InnoDB default charset=utf8 comment '用户注册申请表';
+
+
 #用户信息表
 create table t_user
 (
